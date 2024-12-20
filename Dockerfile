@@ -24,7 +24,7 @@ RUN echo "<?xml version=\"1.0\" encoding=\"utf-8\"?><configuration><packageSourc
 #RUN --mount=type=secret,id=GH_OWNER,dst=/GH_OWNER --mount=type=secret,id=GH_PAT,dst=/GH_PAT \
 #    dotnet nuget add source --username USERNAME --password `cat /GH_PAT` --store-password-in-clear-text --name github "https://nuget.pkg.github.com/`cat /GH_OWNER`/index.json"
 
-RUN dotnet restore "src/Play.Identity.Service/Play.Identity.Service.csproj"
+RUN dotnet restore "src/Play.Identity.Service/Play.Identity.Service.csproj" --configfile nuget.config
 
 COPY ./src ./src
 WORKDIR "/src/Play.Identity.Service"
